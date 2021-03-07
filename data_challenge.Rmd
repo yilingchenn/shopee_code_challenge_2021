@@ -43,9 +43,26 @@ D = object %>%
 ```
 
 ```{r}
-A %>%
-  left_join(B, by = "OrderId") %>%
+set_1 = A %>%
+  union(B, by = "OrderId")
+set_2 = B %>%
+  union(C, by = "Phone")
+set_3 = C %>%
+  union(D, by = "Email")
 ```
+
+```{r}
+set_1_count = set_1 %>%
+  group_by(OrderId) %>%
+  summarize(Orders = n_distinct(OrderId)) %>% 
+  collect()
+```
+
+
+```{r}
+cbind(object$Id)
+```
+
 
 
 
