@@ -1,0 +1,51 @@
+---
+title: "data_challenge"
+author: "Yiling Chen"
+date: "3/6/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(jsonlite)
+```
+
+```{r}
+object = fromJSON("contacts.json")
+head(object)
+```
+
+```{r}
+A = object %>%
+  filter(Email != "") %>%
+  filter(OrderId != "") %>%
+  collect()
+```
+
+```{r}
+B = object %>%
+  filter(OrderId != "") %>%
+  filter(Phone != "") %>%
+  collect()
+```
+
+```{r}
+C = object %>%
+  filter(Email != "") %>%
+  filter(Phone != "") %>%
+  collect()
+```
+
+```{r}
+D = object %>%
+  filter(Email != "") %>%
+  collect()
+```
+
+```{r}
+A %>%
+  left_join(B, by = "OrderId") %>%
+```
+
+
+
